@@ -1,0 +1,9 @@
+<div class="joke-container">
+    <div class="joke-card">
+        <h1>Joke Generator</h1>
+        <h3>{{ joke() }}</h3>
+        <button (click)="getJokes()" >
+            {{ loading() ? 'Loading...' : 'Tell Me Joke!' }}
+        </button>
+    </div>
+</div>

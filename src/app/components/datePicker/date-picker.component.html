@@ -1,0 +1,29 @@
+<div class="custom-range-container" (click)="$event.stopPropagation()">
+  <div class="presets-sidebar">
+    <button *ngFor="let preset of presets" (click)="selectPreset(preset)"
+      [class.active]="activePreset === preset.label">
+      {{ preset.label }}
+    </button>
+    <button (click)="activePreset = 'Custom'">Custom Range</button>
+  </div>
+  <div class="main-content">
+    <div class="calendar-wrapper">
+      <mat-calendar [(selected)]="range.value.start" [maxDate]="maxDate" [headerComponent]="customHeader"
+        (selectedChange)="range.patchValue({start: $event}); activePreset = 'Custom'">
+      </mat-calendar>
+      <mat-calendar [(selected)]="range.value.end" [maxDate]="maxDate" [headerComponent]="customHeader"
+        (selectedChange)="range.patchValue({end: $event}); activePreset = 'Custom'">
+      </mat-calendar>
+    </div>
+    <div class="actions">
+      <div class="date-inputs">
+        <label class="input-label">Start Date:</label>
+        <input [value]="range.value.start | date:'longDate'" placeholder="From" readonly class="input-style">
+        <label class="input-label">End Date:</label>
+        <input [value]="range.value.end | date:'longDate'" placeholder="To" readonly class="input-style">
+      </div>
+      <button mat-flat-button class="btn-apply" (click)="apply()">Apply</button>
+      <button mat-button class="btn-cancel" (click)="cancel()">Cancel</button>
+    </div>
+  </div>
+</div>

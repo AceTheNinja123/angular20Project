@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:host {
+  display: block;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+  width: 640px;
+  padding-top: 40px;
+  box-shadow: 0 0 10px #fff inset;
+  margin: 20px auto;
+  border-radius: 20px;
+  position: absolute;
+  background: #ef19e4;
+}
+
+
+.react {
+  width: 480px;
+  height: 620px;
+  margin: 0 auto;
+  padding: 45px 0 35px;
+  border: #000 solid;
+  border-width: 0 10px 10px;
+  position: relative;
+
+  &.drop {
+    -webkit-transform: translateY(5px);
+    transform: translateY(5px);
+  }
+}
+
+.screen {
+  width: 390px;
+  height: 478px;
+  border: solid 5px;
+  border-color: #8d0f98 #fa6cfa #fa6cfa #980f86;
+  margin: 0 auto;
+  position: relative;
+
+  .panel {
+    width: 380px;
+    height: 468px;
+    margin: 0 auto;
+    background: #9ead86;
+    padding: 8px;
+    border: 2px solid #494536;
+  }
+
+  .last-row {
+    display: flex;
+    gap: 1px;
+    align-items: center;
+    justify-content: flex-start;
+  }
+}

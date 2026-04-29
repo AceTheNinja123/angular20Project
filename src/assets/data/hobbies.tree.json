@@ -1,0 +1,74 @@
+[
+    {
+        "value": 50,
+        "name": "Sports",
+        "children": [
+            {
+                "value": 20,
+                "name": "Soccer"
+            },
+            {
+                "value": 15,
+                "name": "Basketball"
+            },
+            {
+                "value": 10,
+                "name": "Tennis"
+            },
+            {
+                "value": 5,
+                "name": "Swimming"
+            }
+        ]
+    },
+    {
+        "value": 40,
+        "name": "Arts",
+        "children": [
+            {
+                "value": 18,
+                "name": "Painting"
+            },
+            {
+                "value": 12,
+                "name": "Music"
+            },
+            {
+                "value": 10,
+                "name": "Dance"
+            }
+        ]
+    },
+    {
+        "value": 30,
+        "name": "Outdoor",
+        "children": [
+            {
+                "value": 15,
+                "name": "Hiking"
+            },
+            {
+                "value": 10,
+                "name": "Camping"
+            },
+            {
+                "value": 5,
+                "name": "Fishing"
+            }
+        ]
+    },
+    {
+        "value": 20,
+        "name": "Games",
+        "children": [
+            {
+                "value": 12,
+                "name": "Board Games"
+            },
+            {
+                "value": 8,
+                "name": "Video Games"
+            }
+        ]
+    }
+]

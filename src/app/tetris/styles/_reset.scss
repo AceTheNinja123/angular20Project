@@ -1,0 +1,54 @@
+$light-teal: #009688;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: $light-teal;
+
+  padding: 0;
+  margin: 0;
+  font: 20px/1 "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+
+  overflow: hidden;
+  cursor: default;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  direction: ltr;
+  text-align: left;
+}
+
+.state {
+  margin-top: 10px;
+  width: 108px;
+  position: absolute;
+  top: 0;
+  right: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: left;
+  text-align: left;
+  align-items: left;
+
+  p {
+    line-height: 43px;
+    height: 50px;
+    padding: 10px 0 0;
+    white-space: nowrap;
+    clear: both;
+  }
+
+  .last-row {
+    position: absolute;
+
+    justify-content: space-between;
+    width: 114px;
+    top: 420px;
+    left: 0;
+  }
+}

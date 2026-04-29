@@ -1,0 +1,39 @@
+<div class="movieSearchApp">
+    <h3>Movie Application using Angular</h3>
+
+    <div class="movieSearchBox">
+        <input type="text" placeholder="Search for Movies" [(ngModel)]="searchTerm" (keyup.enter)="onSearch()" />
+        <img src="
+          https://media.geeksforgeeks.org/wp-content/uploads/20230626112934/search.png" alt="search icon"
+            (click)="onSearch()" />
+    </div>
+    @if(movies.length > 0){
+    <div class="movieSearchContainer">
+        @for(movie of movies; track $index; let index = $index){
+        <div class="movieSearchMovie">
+            <div>
+                <p>{{ movie.Title }}</p>
+            </div>
+            <div>
+                <img #img [src]="movie.Poster !== 'N/A' ? movie.Poster : 'https://placehold.co/400'" [alt]="movie.Title"
+                    (error)="img.src = 'https://placehold.co/400'" />
+            </div>
+            <div>
+                <span>{{ movie.Type }}</span>
+                <h3>{{ movie.Title }}</h3>
+            </div>
+        </div>
+        }
+
+    </div>
+    } @else {
+    <ng-template #noMovies>
+        <div class="empty">
+            <h2>No Movies found</h2>
+        </div>
+    </ng-template>
+    }
+
+
+
+</div>

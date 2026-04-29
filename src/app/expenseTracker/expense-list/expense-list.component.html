@@ -1,0 +1,89 @@
+<!-- Add button to trigger expense form -->
+<button (click)="openExpenseForm()" class="add-expense-button">
+  <fa-icon [icon]="faPlus" />
+</button>
+<!-- Display list of expenses -->
+@if(expenses.length > 0) {
+<div class="expense-list">
+  @if (!isFormVisible) {
+  <div>
+    <div class="expense-list-header">
+      <span>Account</span>
+      <span>Category</span>
+      <span>Expense</span>
+      <span>Amount</span>
+      <span>Action</span>
+    </div>
+    <div class="expense-list-body" style="border-bottom-left-radius:6px;border-bottom-right-radius:6px">
+      @for (expense of expenses; track expense) {
+      <div>
+        <div class="expense-list-item ">
+          <span>{{ expense.account }}</span>
+          <span>{{ expense.category }}</span>
+          <span> {{ expense.name }}</span>
+          <span class="expense-list-item-span"> -R {{ expense.amount}}</span>
+          <span>
+            <button (click)="deleteExpense(expense)">
+              <fa-icon [icon]="faTrash" />
+            </button>
+          </span>
+        </div>
+        <div class="mt-2 mb-2">
+          <hr>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+  }
+</div>
+} @else { <div class="no-data">
+  <h3>No expenses added yet. Click the + button to add your first expense!</h3>
+</div> }
+<!-- Expense form -->
+@if(isFormVisible) {
+<div class="expense-form">
+  <div>
+    <div class="flex justify-center font-bold text-gray-400">
+      <h3>EXPENSE</h3>
+    </div>
+    <form (ngSubmit)="addExpense()">
+      <div class="expense-form-box">
+        <label>Expense Name:</label>
+        <div class="expense-form-input">
+          <input type="text" [(ngModel)]="newExpense.name" name="name" placeholder="Enter your expense name..."
+            class="border rounded">
+        </div>
+      </div>
+      <div class="expense-form-box">
+        <label>Amount:</label>
+        <div class="expense-form-input">
+          <input type="number" [(ngModel)]="newExpense.amount" name="amount" placeholder="Enter amount"
+            class="border rounded" required>
+        </div>
+      </div>
+      <div class="expense-form-box w-full">
+        <label>Category:</label>
+        <div class="expense-form-input">
+          <select [(ngModel)]="newExpense.category" name="category" class="p-2 border rounded  " required>
+            @for (cat of categories; track cat) { <option [value]="cat">{{ cat }}</option> }
+          </select>
+        </div>
+      </div>
+      <div class="expense-form-box">
+        <label>Account:</label>
+        <div class="expense-form-input">
+          <select [(ngModel)]="newExpense.account" name="account" class="p-2 border rounded w-full" required>
+            @for (acc of accounts; track acc) { <option [value]="acc">{{ acc }}</option> }
+          </select>
+        </div>
+      </div>
+      <div class="expense-form-button-box">
+        <button type="button" (click)="closeExpenseForm()" class="cancel-button"><fa-icon [icon]="faX" />
+          Cancel</button>
+        <button type="submit" class="save-button"><fa-icon [icon]="faSave" /> Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+}

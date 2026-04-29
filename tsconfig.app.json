@@ -1,0 +1,41 @@
+{
+  "extends": "./tsconfig.json",
+  "strictTemplates": true,
+  "compilerOptions": {
+    "outDir": "./out-tsc/app",
+    "rootDir": "./src",
+    "paths": {
+      "@app/*": [
+        "./src/app/*"
+      ],
+      "@assets/*": [
+        "./src/assets/*"
+      ],
+      "@components/*": [
+        "./src/app/components/*"
+      ],
+      "@src/*": [
+        "./src/*"
+      ],
+    },
+    "types": [
+      "node",
+      "jest",
+      
+    ]
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.css",
+    "src/**/*.less",
+    "src/**/*.scss",
+    "src/**/*.sass",
+    "src/**/*.html",
+    "src/**/*.json"
+  ],
+  "exclude": []
+}

@@ -1,0 +1,42 @@
+<!-- Rock Paper Scissors Game -->
+<div id="RockPaperScissorsGameContainer" class="RPSGameContainer">
+    <h1><fa-icon [icon]="faRock" [size]="'24px'" />Rock <fa-icon [icon]="faPaper" [size]="'24px'" />Paper <fa-icon [icon]="faScissors" [size]="'24px'" />Scissors</h1>
+    @if (isGameOverModalOpen == false) {
+    @if (isGameStarted) {
+    <div class="RPSGamePlay" role="group">
+        <fa-icon [icon]="player1Icon" [size]="'24px'" />
+        <fa-icon [icon]="player2Icon" [size]="'24px'" />
+    </div>
+    <div class="RPSGameScore">
+        <h2>Player 1 Score: {{ score1 }}</h2>
+        <h2>Player 2 Score: {{ score2 }}</h2>
+    </div>
+    <div class="RPSPlayerButtonGroup" role="group">
+        <button type="button" class="btn btn-success RPSGameButton" (click)="handlePlayerMove(1, 'rock')"> Rock</button>
+        <button type="button" class="btn btn-warning RPSGameButton"
+            (click)="handlePlayerMove(1, 'paper')">Paper</button>
+        <button type="button" class="btn btn-danger RPSGameButton"
+            (click)="handlePlayerMove(1, 'scissors')">Scissors</button>
+    </div>
+    }
+    <div class="RPSStartandRestartButtonGroup" role="group">
+        <button type="button" class="btn btn-primary RPSGameButton" (click)="startGame()">Start</button>
+        <button type="button" class="btn btn-primary RPSGameButton" (click)="startGame()">Restart</button>
+    </div>
+    }
+
+    @if (isGameOverModalOpen) {
+    <div id="gameOverModal" class="RPSGameOverModal">
+        <div class="RPSGameOverModalContent">
+            <h3>Game Over!</h3>
+            <h2>The winner is: {{ winner }}</h2>
+            <p>Player 1 Score: {{ score1 }}</p>
+            <p>Player 2 Score: {{ score2 }}</p>
+            <div style="display: flex; justify-content: center; gap: 10px;">
+                <button (click)="closeModal()" class="btn btn-secondary">Close</button>
+                <button (click)="startGame()" class="btn btn-primary">Play Again</button>
+            </div>
+        </div>
+    </div>
+    }
+</div>

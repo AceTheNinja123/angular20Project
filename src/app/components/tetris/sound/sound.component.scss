@@ -1,0 +1,12 @@
+.music {
+  width: 25px;
+  height: 21px;
+  background-position: -175px -75px;
+  display: inline-block;
+  position: relative;
+  margin-right: 6px;
+
+  &.filled {
+    background-position: -150px -75px;
+  }
+}

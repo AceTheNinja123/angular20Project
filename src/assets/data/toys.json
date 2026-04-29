@@ -1,0 +1,53 @@
+{
+    "toys": {
+        "$count": 150,
+        "action_figures": {
+            "$count": 45,
+            "marvel": {
+                "$count": 18
+            },
+            "dc": {
+                "$count": 15
+            },
+            "anime": {
+                "$count": 12
+            }
+        },
+        "building_blocks": {
+            "$count": 60,
+            "lego": {
+                "$count": 35
+            },
+            "duplo": {
+                "$count": 15
+            },
+            "mega_bloks": {
+                "$count": 10
+            }
+        },
+        "dolls": {
+            "$count": 25,
+            "barbie": {
+                "$count": 12
+            },
+            "baby_doll": {
+                "$count": 8
+            },
+            "fashion_doll": {
+                "$count": 5
+            }
+        },
+        "vehicles": {
+            "$count": 20,
+            "cars": {
+                "$count": 10
+            },
+            "trucks": {
+                "$count": 7
+            },
+            "helicopters": {
+                "$count": 3
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+<div class="color-picker-box">
+    <mat-card class="color-picker-card" appearance="outlined">
+        <mat-card-header>
+            <div class="header-text">
+                <h1 class="title">Colour Picker</h1>
+                <h3 class="subtitle">Choose a Colour</h3>
+            </div>
+        </mat-card-header>
+        <mat-card-content class="color-picker-content">
+            <input [value]="selectedColor" [colorPicker]="selectedColor" (colorPickerChange)="onColorChange($event)"
+                [cpOKButton]="true" [cpOKButtonText]="'Select'" [cpCancelButton]="true" [cpSaveClickOutside]="false"
+                [cpAlphaChannel]="'disabled'" [cpOutputFormat]="'hex'" class="color-picker-input" />
+            <div class="color-box" [style.background]="selectedColor"></div>
+        </mat-card-content>
+    </mat-card>
+</div>

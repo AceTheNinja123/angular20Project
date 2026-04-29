@@ -1,0 +1,22 @@
+<div id="SnakeGameContainer">
+    <h1>Snake Game</h1>
+    <canvas #screen id="SnakeGameScreen" width="300" height="150"></canvas>
+    <h2>Score: {{ score }}</h2>
+    <div class="SnakeGameButtonGroup" role="group">
+        <button type="button" class="btn btn-success SnakeGameButton" (click)="startGame()">Start</button>
+        <button type="button" class="btn btn-warning SnakeGameButton" (click)="startGame()">Restart</button>
+    </div>
+
+    @if (isGameOverModalOpen) {
+    <div id="gameOverModal" class="SnakeGameOverModal">
+        <div class="SnakeGameOverModalContent">
+            <h3>Game Over!</h3>
+            <p>Your score: {{ score }}</p>
+            <div style="display: flex; justify-content: center; gap: 10px;">
+                <button (click)="closeModal()" class="btn btn-secondary">Close</button>
+                <button (click)="startGame()" class="btn btn-primary">Play Again</button>
+            </div>
+        </div>
+    </div>
+    }
+</div>

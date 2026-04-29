@@ -1,0 +1,21 @@
+<!-- Currency Converter -->
+<div id="CurrencyConverterContainer" class="CurrencyConverterContainer">
+    <h2>Currency Converter</h2>
+    <div class="input-group">
+        <input type="number" [value]="amount()" (input)="amount.set($any($event.target).value)" placeholder="Amount">
+        <select [value]="currencyService.baseCurrency()"
+            (change)="currencyService.baseCurrency.set($any($event.target).value)">
+            @for (currency of currencyService.currencies(); track currency) { <option [value]="currency">{{ currency }}
+            </option> }
+        </select>
+    </div>
+    <button class="swap-btn" (click)="swapCurrencies()">⇅</button>
+    <div class="input-group">
+        <div class="result">{{ convertedAmount() | number:'1.2-2' }}</div>
+        <select [value]="toCurrency()" (change)="toCurrency.set($any($event.target).value)">
+            @for (currency of currencyService.currencies(); track currency) { <option [value]="currency">{{ currency }}
+            </option> }
+        </select>
+    </div>
+    @if (currencyService.ratesResource.isLoading()) { <p class="status">Updating rates...</p> }
+</div>

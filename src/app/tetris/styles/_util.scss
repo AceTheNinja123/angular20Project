@@ -1,0 +1,54 @@
+.r {
+  float: right;
+}
+
+.l {
+  float: left;
+}
+
+.clear {
+  clear: both;
+}
+
+.ml-10 {
+  margin-left: 10px;
+}
+
+.mr-10 {
+  margin-right: 10px;
+}
+
+.w-40 {
+  width: 40px;
+}
+
+.bg {
+  background: url("/assets/tetris/img/bg.png") no-repeat;
+  overflow: hidden;
+}
+
+.pause {
+  width: 20px;
+  height: 18px;
+  background-position: -100px -75px;
+  position: absolute;
+  top: 3px;
+  left: 18px;
+
+  &.filled {
+    background-position: -75px -75px;
+  }
+}
+
+.music {
+  width: 25px;
+  height: 21px;
+  background-position: -175px -75px;
+  position: absolute;
+  top: 2px;
+  left: -12px;
+
+  &.filled {
+    background-position: -150px -75px;
+  }
+}

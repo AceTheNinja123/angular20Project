@@ -1,0 +1,57 @@
+<div class="chessApp">
+    <h1><fa-icon [icon]="faChess" /> Chess Game </h1>
+    <div class="game-controls" style="text-align:center;margin-bottom:12px;">
+        <button (click)="startGame()" [disabled]="started()">Start</button>
+        <button (click)="restartGame()" [disabled]="!started()">Restart</button>
+        @if (started() && !paused()) { <button (click)="pauseGame()">Pause</button> }
+        @if (started() && paused()) { <button (click)="resumeGame()">Resume</button> }
+    </div>
+    <div class="clocks">
+        <div class="clock white">White: {{ ((whiteTime() - (whiteTime() % 60)) / 60) | number:'2.0-0' }}:{{ (whiteTime()
+            % 60) | number:'2.0-0' }}</div>
+        <div class="clock black">Black: {{ ((blackTime() - (blackTime() % 60)) / 60) | number:'2.0-0' }}:{{ (blackTime()
+            % 60) | number:'2.0-0' }}</div>
+    </div>
+    @if(status()){ <div class="game-status">{{ status() }}</div> }
+    <div class="chess-layout">
+        <div class="captured captured-black">
+            <div>Black Captured:</div>
+            <div class="captured-pieces">
+                @for (piece of capturedBlack(); track $index) { <img width="70" height="70"
+                    [src]="'assets/chessIcons/' + pieceIcon[piece]" [alt]="piece" /> }
+            </div>
+        </div>
+        <div class="chessboard">
+            @for (row of board(); track $index; let rowIndex = $index) {
+            @for (cell of row; track $index; let colIndex = $index) {
+            <div class="cell" [class.dark]="(rowIndex + colIndex) % 2 !== 0"
+                [class.selected]="selected()?.row === rowIndex && selected()?.col === colIndex"
+                [class.possible-move]="possibleMoves().some(m => m.row === rowIndex && m.col === colIndex)"
+                (click)="onCellClick(rowIndex, colIndex)">
+                @if (cell) { <img [src]="'assets/chessIcons/' + pieceIcon[cell]" [alt]="cell" /> }
+            </div>
+            }
+            }
+            @if (isPromoting(); as pending) {
+            <div class="promotion-overlay">
+                <div class="promotion-card">
+                    <h3>Promote Your Pawn</h3>
+                    <div class="options">
+                        @for (p of promotionPieces(); track p.type) { <div class="promo-option"
+                            (click)="promote(p.type)">
+                            <img [src]="'assets/chessIcons/' + p.icon" width="60" />
+                        </div> }
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+        <div class="captured captured-white">
+            <div>White Captured:</div>
+            <div class="captured-pieces">
+                @for (piece of capturedWhite(); track $index) { <img width="70" height="70"
+                    [src]="'assets/chessIcons/' + pieceIcon[piece]" [alt]="piece" /> }
+            </div>
+        </div>
+    </div>
+</div>

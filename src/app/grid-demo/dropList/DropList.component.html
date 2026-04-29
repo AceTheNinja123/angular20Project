@@ -1,0 +1,29 @@
+<div class="gridContainer" cdkDropListGroup>
+    <div class="row mt-1" style="height:100px; width: 90%;">
+        <div class="col-3 d-none col-md-3 d-md-block"></div>
+        <div class="col-12 col-md-6 dropListBox">
+            <input [(ngModel)]="newTask" type="text" value="" class="col-7 form-control" style="width:300px;">
+            <div class="col-1"></div>
+            <button (click)="addToList()" class="btn btn-light text-error">ADD TASK</button>
+        </div>
+        <div class="col-3 d-none col-md-3 d-md-block"></div>
+    </div>
+    <div class="dropBox">
+        <div>
+            <h1>To do</h1>
+            <!-- To-Do list  -->
+            <div cdkDropList #todoList="cdkDropList" [cdkDropListConnectedTo]="[doneList]" [cdkDropListData]="todo"
+                (cdkDropListDropped)="drag($event)">
+                @for (item of todo; track $index; let index = $index) { <div cdkDrag>{{item}}</div>}
+            </div>
+        </div>
+        <div>
+            <h1>Done</h1>
+            <!-- Done list  -->
+            <div cdkDropList #doneList="cdkDropList" [cdkDropListConnectedTo]="[todoList]" [cdkDropListData]="done"
+                class="example-list" (cdkDropListDropped)="drag($event)">
+                @for (item of done; track $index; let index = $index) { <div cdkDrag>{{item}}</div>}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+<div class="event-list-container">
+    <ul>
+        @for (event of events; track $index) { <h3> {{ event }} <button class="remove-event-btn"
+                (click)="onRemoveEvent(event)">x</button> </h3> }
+    </ul>
+</div>

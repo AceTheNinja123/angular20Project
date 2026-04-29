@@ -1,0 +1,24 @@
+<div class="react" [class.drop]='drop()'>
+    <t-screen-decoration></t-screen-decoration>
+    <div class="screen">
+        <div class="panel">
+            <div>
+                <t-matrix></t-matrix>
+                @if(isShowLogo$ | async) { <t-logo></t-logo> }
+            </div>
+            <div class="state">
+                <div class="last-row">
+                    <t-sound></t-sound>
+                    <t-pause></t-pause>
+                    <t-clock></t-clock>
+                </div>
+                <t-point></t-point>
+                <t-start-line></t-start-line>
+                <t-level></t-level>
+                <t-next></t-next>
+                <t-hold></t-hold>
+            </div>
+        </div>
+    </div>
+</div>
+<t-keyboard [filling]="filling" (onMouseDown)="keyboardMouseDown($event)" (onMouseUp)="keyboardMouseUp($event)" />

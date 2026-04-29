@@ -1,0 +1,6 @@
+<h1>Current Player: {{ player }} </h1>
+<button nbButton outline status="danger" (click)="newGame()">Start new Game</button>
+@if(winner) { <h2 class="fade-in">Player {{ winner }} won the game!</h2>}
+<main>
+    @for(val of squares;track $index; let index = $index){ <app-square [value]="val" (click)="makeMove(i)" /> }
+</main>

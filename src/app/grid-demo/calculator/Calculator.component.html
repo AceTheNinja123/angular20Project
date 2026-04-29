@@ -1,0 +1,22 @@
+<div class="calculatorContainer">
+    <div class="calculatorRow">
+        <div class="calculatorCard">
+            <div class="calculatorCard-body">
+                <h2>Calculator</h2>
+                <input type="text" class="calculatorForm-control" [value]="display" readonly>
+                <div class="calculatorBtn-group" role="group">
+                    <button class="calculatorBtn btn btn-danger" (click)="clear()">C</button>
+                </div>
+                @for (row of buttons; track $index; let rowIdx = $index) {
+                <div id="row-{{rowIdx}}" class="calculatorBtn-group" role="group">
+                    @for(item of row; track $index; let itemIdx = $index) {
+                    <button id="btn-{{itemIdx}}"
+                        class="calculatorBtn btn {{item == '=' ? 'btn-primary' : 'btn-success'}}"
+                        (click)="item !== '=' ? appendInput(item) : calculate()">{{ item }}</button>
+                    }
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

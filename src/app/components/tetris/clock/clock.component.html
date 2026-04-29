@@ -1,0 +1,5 @@
+<div class="number">
+    @for(sequence of clock$ | async; track $index; let index = $index) {
+    <span class="bg num num-{{ sequence }}"> </span>
+    }
+</div>
