@@ -8,30 +8,31 @@
         </div>
     </form>
 
-    <div *ngIf="loading">Loading recipes…</div>
-    <div *ngIf="error" class="error">{{ error }}</div>
-    <div *ngIf="!loading && recipes.length === 0 && !error">No recipes found.</div>
-
-    <div *ngIf="recipes.length > 0" class="recipeBookResult">
+    @if(loading){ <div>Loading recipes…</div> }
+    @if(error){ <div class="error">{{ error }}</div> }
+    @if(!loading && recipes.length === 0 && !error){ <div>No recipes found.</div> }
+    @if(!loading && recipes.length > 0){
+    <div class="recipeBookResult">
         <h2>Search Results:</h2>
         <div class="recipeCards">
-            <article class="recipeCard" *ngFor="let r of recipes; let i = index">
-                <img *ngIf="r.thumb" [src]="r.thumb" [alt]="r.name" />
+            @for(r of recipes;track $index; let i = $index){
+            <article class="recipeCard">
+                @if(r.thumb){<img [src]="r.thumb" [alt]="r.name" />}
                 <h3>{{ r.name }}</h3>
                 <div class="meta">{{ r.category }} • {{ r.area }}</div>
                 <details>
                     <summary>Ingredients ({{ r.ingredients.length }})</summary>
-                    <ul>
-                        <li *ngFor="let ing of r.ingredients">{{ ing.measure }} {{ ing.name }}</li>
-                    </ul>
+                    <ul> @for(ing of r.ingredients; track $index; let i = $index){<li>{{ ing.measure }} {{ ing.name }}
+                        </li>} </ul>
                 </details>
                 <details>
                     <summary>Instructions</summary>
                     <p class="instructions">{{ r.instructions }}</p>
                 </details>
-                <a *ngIf="r.youtube" [href]="r.youtube" target="_blank" rel="noreferrer">Watch video</a>
+                @if(r.youtube){<a [href]="r.youtube" target="_blank" rel="noreferrer">Watch video</a>}
             </article>
-
+            }
         </div>
     </div>
+    }
 </div>

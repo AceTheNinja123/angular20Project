@@ -12,6 +12,7 @@ import { QuizComponent } from './quiz/quiz.component';
 import { ChessComponent } from './chess/Chess.component';
 import { TetrisGamePage } from './tentrisGamePage/TetrisGamePage.component';
 import { RecipeBookComponent } from './recipeBook/RecipeBook.component';
+import { MusicSearchComponent } from './musicSearch/MusicSearch.component';
 // ECharts components
 import { MapEcharts } from './echarts/map/MapEcharts.component';
 import { PieEcharts } from './echarts/pie/PieEcharts.component';
@@ -39,6 +40,7 @@ const appRoutes: Route[] = [
   { path: 'echarts/line', component: LineEcharts },
   { path: 'echarts/column', component: ColumnEcharts },
   { path: 'echarts/group', component: GroupEcharts },
+  { path: 'music-search', component: MusicSearchComponent },
 ];
 
 export const appConfig: ApplicationConfig = {

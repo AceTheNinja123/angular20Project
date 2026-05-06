@@ -27,7 +27,7 @@ export class RockPaperScissorsGameComponent implements AfterViewInit, OnDestroy 
     faPaper = faHand;
     faScissors = faHandScissors;
 
-    @ViewChild("screen", { static: true })
+    @ViewChild("screen", { static: false })
     canvas!: ElementRef<HTMLCanvasElement>;
 
     private gameLoopId: any;
@@ -39,7 +39,7 @@ export class RockPaperScissorsGameComponent implements AfterViewInit, OnDestroy 
     ) { }
     // Initialize the canvas and draw the initial "Press Start" message
     ngAfterViewInit() {
-        if (isPlatformBrowser(this.platformId)) {
+        if (isPlatformBrowser(this.platformId) && this.canvas) {
             const ctx = this.canvas.nativeElement.getContext('2d');
             if (ctx) {
                 ctx.fillStyle = 'white';

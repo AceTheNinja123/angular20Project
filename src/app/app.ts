@@ -17,6 +17,7 @@ import { MatDividerModule } from '@angular/material/divider';
       <a routerLink="/grid-demo" routerLinkActive="active" class="navBlock">Grid Demo</a>
       <a routerLink="/weather-app" routerLinkActive="active" class="navBlock">Weather App</a>
       <a routerLink="/movie-search" routerLinkActive="active" class="navBlock">Movie Search</a>
+      <a routerLink="/music-search" routerLinkActive="active" class="navBlock">Music Search</a>
       <a routerLink="/expense-tracker" routerLinkActive="active" class="navBlock">Expense Tracker</a>
       <a routerLink="/event-calender" routerLinkActive="active" class="navBlock">Event Calendar</a>
       <a routerLink="/quiz" routerLinkActive="active" class="navBlock">Quiz</a>

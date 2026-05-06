@@ -11,7 +11,7 @@ import { CurrencyConverterComponent } from './currencyConverter/CurrencyConverte
 import { CalculatorComponent } from './calculator/Calculator.component';
 import { TicTacToeComponent } from './ticTacToe/TicTacToe.component';
 import { CommonModule } from '@angular/common';
-
+import { WordleComponent } from './woodle/Wordle.component';
 @Component({
   selector: 'app-grid-demo',
   standalone: true,
@@ -27,7 +27,8 @@ import { CommonModule } from '@angular/common';
     CurrencyConverterComponent,
     CalculatorComponent,
     CommonModule,
-    TicTacToeComponent
+    TicTacToeComponent,
+    WordleComponent
   ],
   template: `
     <div class="container">
@@ -95,6 +96,17 @@ import { CommonModule } from '@angular/common';
         <div class="col-md-6">
           <div class="block">
             <app-tic-tac-toe></app-tic-tac-toe>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="block">
+            <app-wordle></app-wordle>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="block">
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -15,11 +15,8 @@ export class RecipeBookComponent implements OnInit {
     recipes: Recipe[] = [];
     loading = false;
     error: string | null = null;
-
     private API_BASE = 'https://www.themealdb.com/api/json/v1/1/';
-
-    constructor(private http: HttpClient) { }
-
+    constructor(private http: HttpClient, private cd: ChangeDetectorRef) { }
     ngOnInit(): void { this.searchRecipes(this.searchTerm); }
 
     searchRecipes(name: string): void {
@@ -41,10 +38,7 @@ export class RecipeBookComponent implements OnInit {
                                 if (!filtered.length) return of([]);
                                 const ids = filtered.slice(0, 8).map((m: any) => m.idMeal);
                                 const lookups: Observable<any | null>[] = ids.map((id: string) =>
-                                    this.http.get<any>(`${this.API_BASE}lookup.php?i=${id}`).pipe(
-                                        map(lr => (lr?.meals && lr.meals[0]) || null),
-                                        catchError(() => of(null))
-                                    )
+                                    this.http.get<any>(`${this.API_BASE}lookup.php?i=${id}`).pipe(map(lr => (lr?.meals && lr.meals[0]) || null), catchError(() => of(null)))
                                 );
                                 return forkJoin(lookups).pipe(
                                     map((results: (any | null)[]) => results.filter(Boolean).map((m: any) => this.transformMeal(m)))
@@ -57,11 +51,11 @@ export class RecipeBookComponent implements OnInit {
             .subscribe((list: Recipe[]) => {
                 this.recipes = list;
                 this.loading = false;
+                this.cd.detectChanges();
             });
-        console.log("Recipes", this.recipes);
     }
 
-    onSearch(): void { this.searchRecipes(this.searchTerm); console.log("searchTerm", this.searchTerm); }
+    onSearch(): void { this.searchRecipes(this.searchTerm); }
 
     private transformMeal(m: any): Recipe {
         return {

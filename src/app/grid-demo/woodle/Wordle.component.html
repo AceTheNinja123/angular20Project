@@ -1,0 +1,45 @@
+<div class="woodleContainer">
+    <h1>Wordle</h1>
+    <div class="wordle">
+        @for(guess of guesses; track $index){
+        <div class="wordle-row">
+            @for(cell of guess; track $index){ <div
+                class="wordle-cell {{ cell.color ? cell.color + 'background' : '' }}" [ngClass]="cell.color">{{
+                cell.letter }}</div> }
+        </div>
+        }
+        @if( message !== ''){
+        <div class="message">{{ message }}</div>
+        <button class="resetButton" (click)="resetGame()">Play Again</button>
+        }
+
+        <div class="keyboard">
+            <div class="keyboardRow">
+                @for(letter of row1; track $index){
+                <button class="LetterButton {{history[letter] ? history[letter].color + 'ButtonBackground': ''}}"
+                    disabled="history[letter].color === 'grey'" (click)="addLetter(letter)">
+                    {{ letter }}
+                </button>
+                }
+            </div>
+            <div class="keyboardRow">
+                @for(letter of row2; track $index){
+                <button class="LetterButton {{history[letter] ? history[letter].color + 'ButtonBackground': ''}}"
+                    disabled="history[letter].color === 'grey'" (click)="addLetter(letter)">
+                    {{ letter }}
+                </button>
+                }
+            </div>
+            <div class="keyboardRow">
+                <button class="deleteButton" (click)="deleteLetter()"><fa-icon [icon]="deleteIcon"></fa-icon></button>
+                @for(letter of row3; track $index){
+                <button class="LetterButton {{history[letter] ? history[letter].color + 'ButtonBackground': ''}}"
+                    disabled="history[letter].color === 'grey'" (click)="addLetter(letter)">
+                    {{ letter }}
+                </button>
+                }
+                <button class="enterButton" (click)="enterWord()">Enter</button>
+            </div>
+        </div>
+    </div>
+</div>

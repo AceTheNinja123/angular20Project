@@ -1,0 +1,35 @@
+<div class="MusicPlayerContainer">
+    <h1>Music Search</h1>
+    <form class="searchForm" (submit)="onSearch(); $event.preventDefault()">
+        <label>Search for a track by name:</label>
+        <div class="searchRow">
+            <input type="text" [(ngModel)]="searchTerm" name="q" placeholder="Search for a track..." />
+            <button nbButton outline status="primary" (click)="onSearch()">Search</button>
+        </div>
+    </form>
+    @if(loading){ <div>Loading tracks…</div> }
+    @if(error){ <div class="error">{{ error }}</div> }
+    @if(!loading && tracks.length === 0 && !error){ <div>No tracks found.</div> }
+    @if(!loading && tracks.length > 0){
+    <div class="trackListResults">
+        <h2>Search Results:</h2>
+        <div class="trackList">
+            @for(t of tracks; track $index; let i = $index){
+            <div class="trackItem">
+                <div class="trackInfo">
+                    @if(t.artworkUrl100){<img [src]="t.artworkUrl100" [alt]="t.trackName" />}
+                    <div><strong>{{ t.trackName }}</strong> by {{ t.artistName }} ({{ t.collectionName }})</div>
+                    <div><strong>Genre:</strong> {{ t.primaryGenreName }} </div>
+                    <span class="duration"><strong>Track Duration:</strong> {{ formatDuration(t.trackTimeMillis)
+                        }}</span>
+                </div>
+                <div class="trackActions">
+                    <button nbButton outline status="success" (click)="playPreview(t.previewUrl)">Play
+                        Preview</button>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+    }
+</div>

@@ -1248,6 +1248,7 @@ body {
     margin: 10px 0;
     padding: 10px;
 }
+
 .searchRow {
     display: flex;
     flex-direction: row;
@@ -1271,7 +1272,7 @@ body {
     color: var(--primary-contrast-text);
     font-size: 1.2rem;
     border: none;
-    border-radius: 5px; 
+    border-radius: 5px;
     cursor: pointer;
 }
 
@@ -1295,21 +1296,276 @@ body {
     width: 100%;
     height: 100%;
     padding: 20px;
-    justify-content: space-between;
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;
-    align-content: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
     margin: 15px;
-    gap: 5px;
 }
 
 .recipeCard {
-    width: 400px;
-    height: 550px;
+    width: 440px;
+    min-height: 600px;
+    justify-content: space-between;
     background-color: var(--primary-contrast-text);
     border: 2px solid var(--primary-dark);
     box-shadow: 0 4px 8px var(--primary-dark);
     border-radius: 10px;
     padding: 20px;
+}
+
+/* Music Player Styles */
+.MusicPlayerContainer {
+    background-color: var(--primary-light);
+    max-width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 15px 20px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    margin: 20px auto;
+}
+
+.trackListResults {
+    margin-top: 15px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.trackList {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.trackItem {
+    width: 330px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px auto;
+    padding: 10px;
+    border: 2px solid var(--primary-dark);
+    border-radius: 5px;
+    background-color: var(--primary-contrast-text);
+}
+
+.trackInfo {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-size: large;
+}
+
+.trackInfo img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.trackActions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.trackActions button {
+    background-color: var(--primary-dark);
+    color: var(--primary-contrast-text);
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.trackActions button::hover {
+    background-color: var(--primary-main);
+    color: var(--primary-contrast-text);
+}
+
+/* Woodle styles */
+.woodleContainer {
+    /* background-color: var(--primary-light); */
+    max-width: 100%;
+    height: 700px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 15px 20px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    margin: 20px auto;
+}
+
+.woodleContainer h2 {
+    color: var(--primary-dark);
+    margin-bottom: 20px;
+}
+
+.wordle {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.wordle-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.wordle-cell {
+    width: 60px;
+    height: 60px;
+    border: 2px solid var(--primary-dark);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.keyboard {
+    width: 90%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.keyboardRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.LetterButton {
+    width: 60px;
+    height: 40px;
+    background-color: var(--primary-dark);
+    color: var(--primary-contrast-text);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.LetterButton:hover {
+    background-color: var(--primary-main);
+    color: var(--primary-contrast-text);
+}
+
+.LetterButton:disabled {
+    background-color: var(--secondary-dark);
+    color: var(--primary-contrast-text);
+    cursor: not-allowed;
+}
+
+.resetButton {
+    width: 80px;
+    height: 40px;
+    background-color: var(--primary-dark);
+    color: var(--primary-contrast-text);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.deleteButton {
+    width: 80px;
+    height: 40px;
+    background-color: var(--error-main);
+    color: var(--primary-contrast-text);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.deleteButton:hover {
+    background-color: var(--error-dark);
+    color: var(--primary-contrast-text);
+}
+
+.enterButton {
+    width: 80px;
+    height: 40px;
+    background-color: var(--info-main);
+    color: var(--primary-contrast-text);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.enterButton:hover {
+    background-color: var(--info-dark);
+    color: var(--primary-contrast-text);
+}
+
+.wordleMessage {
+    color: var(--warning-dark);
+    font-size: 1rem;
+    height: 40px;
+}
+
+.greenbackground {
+    background-color: var(--success-light);
+    color: var(--primary-contrast-text);
+}
+
+.greybackground {
+    background-color: var(--secondary-light);
+    color: var(--primary-contrast-text);
+}
+
+.yellowbackground {
+    background-color: var(--warning-light);
+    color: var(--primary-contrast-text);
+}
+
+.greenButtonBackground {
+    background-color: var(--success-dark) !important;
+    color: var(--primary-contrast-text) !important;
+}
+
+.greyButtonBackground {
+    background-color: var(--secondary-dark) !important;
+    color: var(--primary-contrast-text) !important;
+    cursor: not-allowed;
+}
+
+.yellowButtonBackground {
+    background-color: var(--warning-dark) !important;
+    color: var(--primary-contrast-text) !important;
 }
