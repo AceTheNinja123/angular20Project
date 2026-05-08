@@ -1,7 +1,5 @@
 // weather-app.component.spec.ts
-
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { WeatherAppComponent } from './WeatherApp.component';
 
 describe('WeatherAppComponent', () => {

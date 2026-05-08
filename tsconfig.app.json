@@ -18,10 +18,6 @@
         "./src/*"
       ],
     },
-    "types": [
-      "node",
-      "jest",
-    ]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
@@ -36,5 +32,8 @@
     "src/**/*.html",
     "src/**/*.json"
   ],
-  "exclude": []
+  "exclude": [
+    "src/test.ts",
+    "src/**/*.spec.ts"
+  ]
 }
