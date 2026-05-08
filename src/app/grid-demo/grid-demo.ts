@@ -105,10 +105,10 @@ import { WordleComponent } from './woodle/Wordle.component';
             <app-wordle></app-wordle>
           </div>
         </div>
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
           <div class="block">
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="bottomBlock"></div>
     </div>
