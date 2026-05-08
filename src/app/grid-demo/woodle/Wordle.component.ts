@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { faDeleteLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { WORDS } from '../../constants/words.constants';
 interface cell {
     letter: string;
     color: string;
@@ -22,7 +22,7 @@ export class WordleComponent {
     protected readonly row2 = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'];
     protected readonly row3 = ['Z', 'X', 'C', 'V', 'B', 'N', 'M'];
     protected readonly deleteIcon = faDeleteLeft;
-    protected readonly targetWord = signal<string>('APPLE');
+    public targetWord = '';
     public wordCount = 5;
     public guesses: cell[][] = [];
     public history: { [key: string]: { color: string } } = {};
@@ -30,6 +30,7 @@ export class WordleComponent {
     public currentGuessCol = 0;
     public message = '';
     constructor() {
+        this.targetWord = WORDS[Math.floor(Math.random() * WORDS.length)].toUpperCase();
         for (let j = 0; j < maxGuesses; j++) {
             const row: cell[] = [];
             for (let i = 0; i < this.wordCount; i++) {
@@ -53,17 +54,18 @@ export class WordleComponent {
 
     }
 
-    protected async enterWord(): Promise<void> {
+    protected enterWord(): void {
         if (this.currentGuessCol !== this.wordCount) {
             this.message = 'Not enough letters!';
             return;
         }
         this.message = '';
-        const targetArr = this.targetWord().toUpperCase().split('');
+        const targetArr = this.targetWord.toUpperCase().split('');
         const rowGuess = this.guesses[this.currentGuessRow]
         const wordString = rowGuess.map(cell => cell.letter).join('').toUpperCase();
 
-        if (!(await this.isValidWord(wordString))) {
+        if (!(this.isValidWord(wordString))) {
+            this.message = 'Not a valid word in the list!';
             return;
         }
 
@@ -73,22 +75,22 @@ export class WordleComponent {
                 if (letter === targetArr[i]) {
                     this.guesses[this.currentGuessRow][i].color = 'green';
                     targetArr[i] = ''; // Mark letter as used
-                    this.history[letter] = {color:'green'};
+                    this.history[letter] = { color: 'green' };
                 } else {
                     this.guesses[this.currentGuessRow][i].color = 'yellow';
                     if (!this.history[letter]) {
-                        this.history[letter] = {color: 'yellow'};
+                        this.history[letter] = { color: 'yellow' };
                     }
                 }
             } else {
                 this.guesses[this.currentGuessRow][i].color = 'grey';
                 if (!this.history[letter]) {
-                    this.history[letter] = {color: 'grey'};
+                    this.history[letter] = { color: 'grey' };
                 }
             }
         }
         console.log(this.history);
-        if (wordString === this.targetWord()) {
+        if (wordString === this.targetWord) {
             this.message = 'Congratulations! You guessed the word!';
             return;
         }
@@ -97,17 +99,12 @@ export class WordleComponent {
         this.currentGuessCol = 0;
     }
 
-    protected async isValidWord(word: string): Promise<boolean> {
-        // try {
-        //     const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word.toLowerCase()}`);
-        //     if (response.ok) { return true; }
-        //     this.message = 'Not a valid word!';
-        //     return false;
-        // } catch (error) {
-        //     this.message = 'Not a valid word!';
-        //     return false;
-        // }
-        return true; // Placeholder for word validation logic
+    protected isValidWord(word: string): boolean {
+        return WORDS.includes(word); // Placeholder for word validation logic
+    }
+
+    protected isDisabled(letter: string): boolean {
+        return this.history[letter] && this.history[letter].color === 'grey';
     }
 
     protected resetGame(): void {

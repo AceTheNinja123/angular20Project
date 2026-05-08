@@ -17,7 +17,7 @@
             <div class="keyboardRow">
                 @for(letter of row1; track $index){
                 <button class="LetterButton {{history[letter] ? history[letter].color + 'ButtonBackground': ''}}"
-                    disabled="history[letter].color === 'grey'" (click)="addLetter(letter)">
+                    disabled="{{isDisabled(letter)}}" (click)="addLetter(letter)">
                     {{ letter }}
                 </button>
                 }
@@ -25,7 +25,7 @@
             <div class="keyboardRow">
                 @for(letter of row2; track $index){
                 <button class="LetterButton {{history[letter] ? history[letter].color + 'ButtonBackground': ''}}"
-                    disabled="history[letter].color === 'grey'" (click)="addLetter(letter)">
+                    disabled="{{isDisabled(letter)}}" (click)="addLetter(letter)">
                     {{ letter }}
                 </button>
                 }
@@ -34,7 +34,7 @@
                 <button class="deleteButton" (click)="deleteLetter()"><fa-icon [icon]="deleteIcon"></fa-icon></button>
                 @for(letter of row3; track $index){
                 <button class="LetterButton {{history[letter] ? history[letter].color + 'ButtonBackground': ''}}"
-                    disabled="history[letter].color === 'grey'" (click)="addLetter(letter)">
+                    disabled="{{isDisabled(letter)}}" (click)="addLetter(letter)">
                     {{ letter }}
                 </button>
                 }
