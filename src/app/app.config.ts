@@ -13,6 +13,7 @@ import { ChessComponent } from './chess/Chess.component';
 import { TetrisGamePage } from './tentrisGamePage/TetrisGamePage.component';
 import { RecipeBookComponent } from './recipeBook/RecipeBook.component';
 import { MusicSearchComponent } from './musicSearch/MusicSearch.component';
+import { TheMagicGameComponent } from './theMagicGame/TheMagicGame.component';
 // ECharts components
 import { MapEcharts } from './echarts/map/MapEcharts.component';
 import { PieEcharts } from './echarts/pie/PieEcharts.component';
@@ -32,6 +33,7 @@ const appRoutes: Route[] = [
   { path: 'quiz', component: QuizComponent },
   { path: 'chess', component: ChessComponent },
   { path: 'tetris', component: TetrisGamePage },
+  { path: 'magic-game', component: TheMagicGameComponent },
   { path: 'recipe-book', component: RecipeBookComponent },
   { path: 'echarts/map', component: MapEcharts },
   { path: 'echarts/pie', component: PieEcharts },

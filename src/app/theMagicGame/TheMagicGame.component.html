@@ -1,0 +1,27 @@
+<div class="magicGameContainer">
+    <h1>The Magic Game</h1>
+    <h2>Instructions:</h2>
+    <div class="magicGameInstructions">
+        <!-- <ul>
+            @for(instr of instructions; track $index; let i = $index){
+            <li>{{ instr }}</li>
+            }
+        </ul> -->
+        @for(instr of instructions; track $index; let i = $index){ <div>{{ i + 1 }}. {{ instr }}</div> }
+    </div>
+    <div class="magicTable">
+        @for(cell of magicData; track $index; let j = $index){
+        <div class="cell">
+            <div class="cellEmoji">{{ cell.emoji }}</div>
+            <div class="cellValue">{{ cell.number }}</div>
+        </div>
+        }
+    </div>
+    <button class="btn btn-primary revelButton" (click)="revealResults()">Reveal</button>
+    @if(reveal) {
+    <div class="MagicResult">
+        <div class="emojiAnswer">{{ answer }}</div>
+        <button class="btn btn-success" (click)="inizilezetion()">Play Again</button>
+    </div>
+    }
+</div>

@@ -22,6 +22,7 @@ import { MatDividerModule } from '@angular/material/divider';
       <a routerLink="/quiz" routerLinkActive="active" class="navBlock">Quiz</a>
       <a routerLink="/chess" routerLinkActive="active" class="navBlock">Chess</a>
       <a routerLink="/tetris" routerLinkActive="active" class="navBlock">Tetris</a>
+      <a routerLink="/magic-game" routerLinkActive="active" class="navBlock">Magic Game</a>
       <a routerLink="/recipe-book" routerLinkActive="active" class="navBlock">Recipe Book</a>
       <button mat-button [matMenuTriggerFor]="echartsMenu" class="navDropdown" style="color: {{ titleColor }} !important;">
         {{chartTitle}} ▼

@@ -12,6 +12,7 @@ import { CalculatorComponent } from './calculator/Calculator.component';
 import { TicTacToeComponent } from './ticTacToe/TicTacToe.component';
 import { CommonModule } from '@angular/common';
 import { WordleComponent } from './woodle/Wordle.component';
+import { DndCharacterGenerator } from './dndCharacterGenerator/DndCharacterGenerator.component';
 @Component({
   selector: 'app-grid-demo',
   standalone: true,
@@ -28,7 +29,8 @@ import { WordleComponent } from './woodle/Wordle.component';
     CalculatorComponent,
     CommonModule,
     TicTacToeComponent,
-    WordleComponent
+    WordleComponent,
+    DndCharacterGenerator,
   ],
   template: `
     <div class="container">
@@ -105,10 +107,11 @@ import { WordleComponent } from './woodle/Wordle.component';
             <app-wordle></app-wordle>
           </div>
         </div>
-        <!-- <div class="col-md-6">
+        <div class="col-md-6">
           <div class="block">
+            <app-dnd-character-generator></app-dnd-character-generator>
           </div>
-        </div> -->
+        </div>
       </div>
       <div class="bottomBlock"></div>
     </div>

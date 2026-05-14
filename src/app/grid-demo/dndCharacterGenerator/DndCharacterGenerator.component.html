@@ -1,0 +1,27 @@
+<div class="DndCharacterGeneratorContainer">
+    <h2>Dungeons and Dragons Character Generator</h2>
+    <p>Generate a random Dungeons and Dragons character using the Open5e API.</p>
+    <button (click)="generateCharacter()">Generate Character</button>
+    @if(character){
+    <div class="character-card">
+        <div class="character-header">
+            <h3>{{ character.name }}</h3>
+            <div class="ac">
+                <p>{{character.ac}}</p>
+            </div>
+        </div>
+        <p><strong>Class:</strong> {{ character.class.name }}</p>
+        <p><strong>Level:</strong> {{ character.level }}</p>
+        <p><strong>Race:</strong> {{ character.race.name }}</p>
+        <p><strong>Background:</strong> {{ character.background.name }}</p>
+        <div class="ability-scores">
+            <p class="abilityScore"><strong>Strength:</strong> {{ character.strength }}</p>
+            <p class="abilityScore"><strong>Dexterity:</strong> {{ character.dexterity }}</p>
+            <p class="abilityScore"><strong>Constitution:</strong> {{ character.constitution }}</p>
+            <p class="abilityScore"><strong>Intelligence:</strong> {{ character.intelligence }}</p>
+            <p class="abilityScore"><strong>Wisdom:</strong> {{ character.wisdom }}</p>
+            <p class="abilityScore"><strong>Charisma:</strong> {{ character.charisma }}</p>
+        </div>
+    </div>
+    }
+</div>
