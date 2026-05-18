@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { ClassInfo, RaceInfo, BackgroundInfo } from '@app/grid-demo/dndCharacterGenerator/DndInterface';
 export interface Open5eList<T> {
   count: number;
   next: string | null;
@@ -29,7 +29,7 @@ export class Open5eService {
   }
 
   getClass(slug: string) {
-    return this.http.get<Open5eClass>(`${this.base}/classes/${slug}/`);
+    return this.http.get<ClassInfo>(`${this.base}/classes/${slug}`);
   }
 
   getRaces(page = 1): Observable<Open5eList<Open5eClass>> {
@@ -37,7 +37,7 @@ export class Open5eService {
   }
 
   getRace(slug: string) {
-    return this.http.get<Open5eClass>(`${this.base}/species/${slug}/`);
+    return this.http.get<RaceInfo>(`${this.base}/species/${slug}`);
   }
 
   getBackgrounds(page = 1): Observable<Open5eList<Open5eClass>> {
@@ -45,6 +45,6 @@ export class Open5eService {
   }
 
   getBackground(slug: string) {
-    return this.http.get<Open5eClass>(`${this.base}/backgrounds/${slug}/`);
+    return this.http.get<BackgroundInfo>(`${this.base}/backgrounds/${slug}`);
   }
 }

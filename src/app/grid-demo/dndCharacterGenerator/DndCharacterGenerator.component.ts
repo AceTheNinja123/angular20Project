@@ -4,8 +4,10 @@ import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Open5eService, Open5eClass, Open5eList } from '../../services/open5e.service';
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { ClassInfo, RaceInfo, BackgroundInfo } from './DndInterface';
+import { lastValueFrom, Observable } from 'rxjs';
 import { faShield } from '@fortawesome/free-solid-svg-icons';
+import { MatTooltip } from "@angular/material/tooltip";
 interface Character {
     name: string;
     level: number;
@@ -24,7 +26,7 @@ interface Character {
 @Component({
     selector: 'app-dnd-character-generator',
     standalone: true,
-    imports: [FormsModule, CommonModule, FontAwesomeModule],
+    imports: [FormsModule, CommonModule, FontAwesomeModule, MatTooltip],
     templateUrl: './DndCharacterGenerator.component.html',
     styleUrl: '../../../styles.css'
 })
@@ -45,16 +47,26 @@ export class DndCharacterGenerator {
         "Half-Orc": ["Grommash Hellscream", "Durotan Frostwolf", "Garrosh Hellscream", "Thrall Doomhammer", "Orgrim Doomhammer"]
     };
     // State management using signals
+    // groups for classes, races and background
     classes = signal<Open5eClass[] | null>(null);
     races = signal<Open5eClass[] | null>(null);
     backgrounds = signal<Open5eClass[] | null>(null);
+    //Individual class, race and background
+    class = signal<ClassInfo | null>(null);
+    race = signal<RaceInfo | null>(null);
+    background = signal<BackgroundInfo | null>(null);
+    classTooltip = signal<string>('');
+    raceTooltip = signal<string>('');
+    backgroundTooltip = signal<string>('');
+    //load
     loading = signal(false);
     error = signal('');
+
     // Observables for random selections
     public randomedClass: Observable<Open5eClass> | null = null;
     public randomedRace: Observable<Open5eClass> | null = null;
     public randomedBackground: Observable<Open5eClass> | null = null;
-    public character: Character | null = null;
+    character = signal<Character>(null as any);
     public faShield = faShield;
     constructor(private open5e: Open5eService) {
         // Fetch classes, races, and backgrounds from Open5e API
@@ -103,8 +115,25 @@ export class DndCharacterGenerator {
         const modifier = Math.floor((str - 10) / 2);
         return `${str} (${modifier >= 0 ? '+' : ''}${modifier})`;
     }
+
+    async getInfo(randomedClass: Open5eClass, randomedRace: Open5eClass, randomedBackground: Open5eClass): Promise<void> {
+        const classKey = randomedClass.key;
+        const raceKey = randomedRace.key;
+        const backgroundKey = randomedBackground.key;
+        if (!classKey || !raceKey || !backgroundKey) { return; }
+        try {
+            this.class.set(await lastValueFrom(this.open5e.getClass(classKey)));
+            this.race.set(await lastValueFrom(this.open5e.getRace(raceKey)));
+            this.background.set(await lastValueFrom(this.open5e.getBackground(backgroundKey)));
+        } catch { }
+    }
+
     // Function to generate a random character
-    generateCharacter(): void {
+    async generateCharacter(): Promise<void> {
+        this.classTooltip.set('');
+        this.raceTooltip.set('');
+        this.backgroundTooltip.set('');
+
         // Randomly select class, race, background, and alignment
         const randomedClass = this.classes()?.[Math.floor(Math.random() * (this.classes()?.length || 0))] || null;
         const randomedRace = this.races()?.[Math.floor(Math.random() * (this.races()?.length || 0))] || null;
@@ -115,11 +144,37 @@ export class DndCharacterGenerator {
         const race = randomedRace?.name.toLowerCase() || 'human';
         const randomNameList = this.names[race] || this.names['human'];
         const randomName = randomNameList[Math.floor(Math.random() * randomNameList.length)];
-        console.log("Randomed Class", randomedClass);
-        console.log("Randomed Race", randomedRace);
-        console.log("Randomed Background", randomedBackground);
+
+        if (randomedClass !== null && randomedRace !== null && randomedBackground !== null) {
+            await this.getInfo(randomedClass, randomedRace, randomedBackground);
+
+            //Class tooltip
+            const coreTraits = this.class()?.features.find(
+                f => f.feature_type === 'CORE_TRAITS_TABLE'
+            );
+
+            const tooltipText = coreTraits?.desc
+                .split('\n')
+                .filter(line => line.includes('|'))
+                .slice(2)
+                .map(line => {
+                    const parts = line.split('|').map(p => p.trim()).filter(Boolean);
+                    return `${parts[0]}: ${parts[1]}`;
+                })
+                .join('\n\n');
+            if (tooltipText) this.classTooltip.set(tooltipText)
+
+            //Race Tooltip
+            const raceTraitsText = this.race()?.traits.map(trait => `${trait.name}: ${trait.desc}`).join('\n\n');
+            if (raceTraitsText) this.raceTooltip.set(raceTraitsText);
+
+            //Background Tooltip
+            const backgroundTraitsText = this.background()?.benefits.map(benefit => `${benefit.name}: ${benefit.desc}`).join('\n\n');
+            if (backgroundTraitsText) this.backgroundTooltip.set(backgroundTraitsText);
+        }
+
         if (randomedClass && randomedRace && randomedBackground) {
-            this.character = {
+            this.character.set({
                 name: randomName,
                 level: 1,
                 class: randomedClass,
@@ -133,7 +188,7 @@ export class DndCharacterGenerator {
                 intelligence: strArray.int,
                 wisdom: strArray.wis,
                 charisma: strArray.cha
-            };
+            });
         }
     }
 }

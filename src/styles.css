@@ -1738,14 +1738,14 @@ body {
 
 .ac {
     display: flex;
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-image: url('assets/dnd/shield2.png');
+    background-image: url('assets/dnd/shield3.png');
     background-repeat: no-repeat;
     background-position: center;
     background-clip: initial;
@@ -1753,8 +1753,23 @@ body {
 }
 
 .ac p {
-    width: 100%;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: var(--primary-contrast-text);
+    font-size: 1rem;
+    color: black
+}
+
+.custom-dnd-tooltip .mdc-tooltip__surface {
+  background-color: #2c3e50; /* Darker background */
+  color: #ecf0f1;           /* Light text */
+  font-size: 14px;
+  padding: 12px;
+  border-radius: 8px;
+  max-width: 400px;
+  padding: 10px;
+
+  /* Crucial: Respect the \n line breaks generated in your TS */
+  white-space: pre-line; 
+  
+  /* Optional: Add a border or shadow */
+  border: 1px solid #34495e;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
