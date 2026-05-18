@@ -147,7 +147,6 @@ export class DndCharacterGenerator {
 
         if (randomedClass !== null && randomedRace !== null && randomedBackground !== null) {
             await this.getInfo(randomedClass, randomedRace, randomedBackground);
-
             //Class tooltip
             const coreTraits = this.class()?.features.find(
                 f => f.feature_type === 'CORE_TRAITS_TABLE'
@@ -158,18 +157,25 @@ export class DndCharacterGenerator {
                 .filter(line => line.includes('|'))
                 .slice(2)
                 .map(line => {
-                    const parts = line.split('|').map(p => p.trim()).filter(Boolean);
+                    const parts = line
+                        .split('|')
+                        .map(p => p.trim())
+                        .filter(Boolean);
                     return `${parts[0]}: ${parts[1]}`;
                 })
                 .join('\n\n');
             if (tooltipText) this.classTooltip.set(tooltipText)
 
             //Race Tooltip
-            const raceTraitsText = this.race()?.traits.map(trait => `${trait.name}: ${trait.desc}`).join('\n\n');
+            const raceTraitsText = this.race()?.traits
+                .map(trait => `${trait.name}: ${trait.desc}`)
+                .join('\n\n');
             if (raceTraitsText) this.raceTooltip.set(raceTraitsText);
 
             //Background Tooltip
-            const backgroundTraitsText = this.background()?.benefits.map(benefit => `${benefit.name}: ${benefit.desc}`).join('\n\n');
+            const backgroundTraitsText = this.background()?.benefits
+                .map(benefit => `${benefit.name}: ${benefit.desc}`)
+                .join('\n\n');
             if (backgroundTraitsText) this.backgroundTooltip.set(backgroundTraitsText);
         }
 
