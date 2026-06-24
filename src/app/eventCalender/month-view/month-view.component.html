@@ -1,10 +1,11 @@
 <div class="month-view-container">
     @for (day of days; track day) {
     <div class="day" (click)="selectDate(day)">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h3 [style.color]="checkEvent(day) >= 1 ? 'rgb(248, 72, 72)' : 'inherit'"> {{ day | date : "EEEE, dd" }}
+        <div class="header-day">
+            <h3 [style.color]="checkEvent(day) >= 1 ? 'rgb(248, 72, 72)' : 'inherit'"> 
+                {{ day | date : "EEEE, dd" }}
             </h3>
-            <button class="add-event-btn" (click)="openAddEventModal(day); $event.stopPropagation()">+</button>
+            <button class="add-event-btn" (click)="openAddEventModal(day); $event.stopPropagation()">Add Event</button>
         </div>
         <div style="font-size: 0.8em; margin-top: 5px;">
             @for (event of events[day.toISOString().split('T')[0]] || []; track event) {
