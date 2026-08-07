@@ -101,7 +101,7 @@ export class TetrisComponent implements OnInit {
     }
   }
 
-  keyDownLeft(event?: KeyboardEvent) {
+  keyDownLeft(event?: Event) {
     event?.preventDefault();
     this.soundManager.move();
     this.keyboardService.setKeỵ({ left: true });
@@ -109,9 +109,9 @@ export class TetrisComponent implements OnInit {
     else { this.tetrisService.decreaseLevel(); }
   }
 
-  keyUpLeft(event?: KeyboardEvent) { event?.preventDefault(); this.keyboardService.setKeỵ({ left: false }); }
+  keyUpLeft(event?: Event) { event?.preventDefault(); this.keyboardService.setKeỵ({ left: false }); }
 
-  keyDownRight(event?: KeyboardEvent) {
+  keyDownRight(event?: Event) {
     event?.preventDefault();
     this.soundManager.move();
     this.keyboardService.setKeỵ({ right: true });
@@ -119,9 +119,9 @@ export class TetrisComponent implements OnInit {
     else { this.tetrisService.increaseLevel(); }
   }
 
-  keyUpRight(event?: KeyboardEvent) { event?.preventDefault(); this.keyboardService.setKeỵ({ right: false }); }
+  keyUpRight(event?: Event) { event?.preventDefault(); this.keyboardService.setKeỵ({ right: false }); }
 
-  keyDownUp(event?: KeyboardEvent) {
+  keyDownUp(event?: Event) {
     event?.preventDefault();
     this.soundManager.rotate();
     this.keyboardService.setKeỵ({ up: true });
@@ -129,9 +129,9 @@ export class TetrisComponent implements OnInit {
     else { this.tetrisService.increaseStartLine(); }
   }
 
-  keyUpUp(event?: KeyboardEvent) { event?.preventDefault(); this.keyboardService.setKeỵ({ up: false }); }
+  keyUpUp(event?: Event) { event?.preventDefault(); this.keyboardService.setKeỵ({ up: false }); }
 
-  keyDownDown(event?: KeyboardEvent) {
+  keyDownDown(event?: Event) {
     event?.preventDefault();
     this.soundManager.move();
     this.keyboardService.setKeỵ({ down: true });
@@ -139,9 +139,9 @@ export class TetrisComponent implements OnInit {
     else { this.tetrisService.decreaseStartLine(); }
   }
 
-  keyUpDown(event?: KeyboardEvent) { event?.preventDefault(); this.keyboardService.setKeỵ({ down: false }); }
+  keyUpDown(event?: Event) { event?.preventDefault(); this.keyboardService.setKeỵ({ down: false }); }
 
-  keyDownSpace(event?: KeyboardEvent) {
+  keyDownSpace(event?: Event) {
     event?.preventDefault();
     this.keyboardService.setKeỵ({ drop: true });
     if (this.hasCurrent) {
@@ -153,21 +153,21 @@ export class TetrisComponent implements OnInit {
     this.tetrisService.start();
   }
 
-  keyUpSpace(event?: KeyboardEvent) { event?.preventDefault(); this.keyboardService.setKeỵ({ drop: false }); }
+  keyUpSpace(event?: Event) { event?.preventDefault(); this.keyboardService.setKeỵ({ drop: false }); }
 
-  keyDownHold(event?: KeyboardEvent) { event?.preventDefault(); this.soundManager.move(); this.keyboardService.setKeỵ({ hold: true }); this.tetrisService.holdPiece(); }
+  keyDownHold(event?: Event) { event?.preventDefault(); this.soundManager.move(); this.keyboardService.setKeỵ({ hold: true }); this.tetrisService.holdPiece(); }
 
-  keyUpHold(event?: KeyboardEvent) { event?.preventDefault(); this.keyboardService.setKeỵ({ hold: false }); }
+  keyUpHold(event?: Event) { event?.preventDefault(); this.keyboardService.setKeỵ({ hold: false }); }
 
-  keyDownSound(event?: KeyboardEvent) { event?.preventDefault(); this.soundManager.move(); this.tetrisService.toggleSound(); this.keyboardService.setKeỵ({ sound: true }); }
+  keyDownSound(event?: Event) { event?.preventDefault(); this.soundManager.move(); this.tetrisService.toggleSound(); this.keyboardService.setKeỵ({ sound: true }); }
 
-  keyUpSound(event?: KeyboardEvent) { event?.preventDefault(); this.keyboardService.setKeỵ({ sound: false }); }
+  keyUpSound(event?: Event) { event?.preventDefault(); this.keyboardService.setKeỵ({ sound: false }); }
 
-  keyDownPause(event?: KeyboardEvent) { event?.preventDefault(); this.soundManager.move(); this.keyboardService.setKeỵ({ pause: true }); if (this.tetrisState.canStartGame()) { this.tetrisService.resume(); } else { this.tetrisService.pause(); } }
+  keyDownPause(event?: Event) { event?.preventDefault(); this.soundManager.move(); this.keyboardService.setKeỵ({ pause: true }); if (this.tetrisState.canStartGame()) { this.tetrisService.resume(); } else { this.tetrisService.pause(); } }
 
-  keyUpPause(event?: KeyboardEvent) { event?.preventDefault(); this.keyboardService.setKeỵ({ pause: false }); }
+  keyUpPause(event?: Event) { event?.preventDefault(); this.keyboardService.setKeỵ({ pause: false }); }
 
-  keyDownReset(event?: KeyboardEvent) {
+  keyDownReset(event?: Event) {
     event?.preventDefault();
     this.soundManager.move();
     this.keyboardService.setKeỵ({ reset: true });
@@ -179,7 +179,7 @@ export class TetrisComponent implements OnInit {
     });
   }
 
-  keyUpReset(event?: KeyboardEvent) { event?.preventDefault(); this.keyboardService.setKeỵ({ reset: false }); }
+  keyUpReset(event?: Event) { event?.preventDefault(); this.keyboardService.setKeỵ({ reset: false }); }
 
   get hasCurrent() { return this.tetrisState.hasCurrent(); }
 

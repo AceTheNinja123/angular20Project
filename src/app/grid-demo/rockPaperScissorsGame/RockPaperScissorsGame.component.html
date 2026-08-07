@@ -1,11 +1,11 @@
 <!-- Rock Paper Scissors Game -->
 <div id="RockPaperScissorsGameContainer" class="RPSGameContainer">
-    <h1><fa-icon [icon]="faRock" [size]="'24px'" />Rock <fa-icon [icon]="faPaper" [size]="'24px'" />Paper <fa-icon [icon]="faScissors" [size]="'24px'" />Scissors</h1>
+    <h1><fa-icon [icon]="faRock" size="lg" />Rock <fa-icon [icon]="faPaper" size="lg" />Paper <fa-icon [icon]="faScissors" size="lg" />Scissors</h1>
     @if (isGameOverModalOpen == false) {
     @if (isGameStarted) {
     <div class="RPSGamePlay" role="group">
-        <fa-icon [icon]="player1Icon" [size]="'24px'" />
-        <fa-icon [icon]="player2Icon" [size]="'24px'" />
+        <fa-icon [icon]="player1Icon" size="lg" />
+        <fa-icon [icon]="player2Icon" size="lg" />
     </div>
     <div class="RPSGameScore">
         <h2>Player 1 Score: {{ score1 }}</h2>

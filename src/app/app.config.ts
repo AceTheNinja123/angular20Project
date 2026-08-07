@@ -2,47 +2,28 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessC
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideRouter, withComponentInputBinding, Route } from '@angular/router';
-import { GridDemo } from './grid-demo/grid-demo';
-import { WeatherAppPage } from './weatherAppPage/WeatherAppPage';
-import { MovieSearchComponent } from './movieSearch/MovieSearch.component';
-import { ExpenseListComponent } from './expenseTracker/expense-list/expense-list.component';
-import { CalendarComponent } from './eventCalender/calendar/calendar.component';
 import { provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
-import { QuizComponent } from './quiz/quiz.component';
-import { ChessComponent } from './chess/Chess.component';
-import { TetrisGamePage } from './tentrisGamePage/TetrisGamePage.component';
-import { RecipeBookComponent } from './recipeBook/RecipeBook.component';
-import { MusicSearchComponent } from './musicSearch/MusicSearch.component';
-import { TheMagicGameComponent } from './theMagicGame/TheMagicGame.component';
-// ECharts components
-import { MapEcharts } from './echarts/map/MapEcharts.component';
-import { PieEcharts } from './echarts/pie/PieEcharts.component';
-import { OtherEcharts } from './echarts/other/OtherEcharts.component';
-import { PolarBarEcharts } from './echarts/polarBar/PolarBarEcharts.component';
-import { LineEcharts } from './echarts/line/LineEcharts.component';
-import { ColumnEcharts } from './echarts/column/ColumnEcharts.component';
-import { GroupEcharts } from './echarts/group/GroupEcharts.component';
 
 const appRoutes: Route[] = [
   { path: '', redirectTo: 'grid-demo', pathMatch: 'full' },
-  { path: 'grid-demo', component: GridDemo },
-  { path: 'weather-app', component: WeatherAppPage },
-  { path: 'movie-search', component: MovieSearchComponent },
-  { path: 'expense-tracker', component: ExpenseListComponent },
-  { path: 'event-calender', component: CalendarComponent },
-  { path: 'quiz', component: QuizComponent },
-  { path: 'chess', component: ChessComponent },
-  { path: 'tetris', component: TetrisGamePage },
-  { path: 'magic-game', component: TheMagicGameComponent },
-  { path: 'recipe-book', component: RecipeBookComponent },
-  { path: 'echarts/map', component: MapEcharts },
-  { path: 'echarts/pie', component: PieEcharts },
-  { path: 'echarts/other', component: OtherEcharts },
-  { path: 'echarts/polar-bar', component: PolarBarEcharts },
-  { path: 'echarts/line', component: LineEcharts },
-  { path: 'echarts/column', component: ColumnEcharts },
-  { path: 'echarts/group', component: GroupEcharts },
-  { path: 'music-search', component: MusicSearchComponent },
+  { path: 'grid-demo', loadComponent: () => import('./grid-demo/grid-demo').then((m) => m.GridDemo) },
+  { path: 'weather-app', loadComponent: () => import('./weatherAppPage/WeatherAppPage').then((m) => m.WeatherAppPage) },
+  { path: 'movie-search', loadComponent: () => import('./movieSearch/MovieSearch.component').then((m) => m.MovieSearchComponent) },
+  { path: 'expense-tracker', loadComponent: () => import('./expenseTracker/expense-list/expense-list.component').then((m) => m.ExpenseListComponent) },
+  { path: 'event-calender', loadComponent: () => import('./eventCalender/calendar/calendar.component').then((m) => m.CalendarComponent) },
+  { path: 'quiz', loadComponent: () => import('./quiz/quiz.component').then((m) => m.QuizComponent) },
+  { path: 'chess', loadComponent: () => import('./chess/Chess.component').then((m) => m.ChessComponent) },
+  { path: 'tetris', loadComponent: () => import('./tentrisGamePage/TetrisGamePage.component').then((m) => m.TetrisGamePage) },
+  { path: 'magic-game', loadComponent: () => import('./theMagicGame/TheMagicGame.component').then((m) => m.TheMagicGameComponent) },
+  { path: 'recipe-book', loadComponent: () => import('./recipeBook/RecipeBook.component').then((m) => m.RecipeBookComponent) },
+  { path: 'echarts/map', loadComponent: () => import('./echarts/map/MapEcharts.component').then((m) => m.MapEcharts) },
+  { path: 'echarts/pie', loadComponent: () => import('./echarts/pie/PieEcharts.component').then((m) => m.PieEcharts) },
+  { path: 'echarts/other', loadComponent: () => import('./echarts/other/OtherEcharts.component').then((m) => m.OtherEcharts) },
+  { path: 'echarts/polar-bar', loadComponent: () => import('./echarts/polarBar/PolarBarEcharts.component').then((m) => m.PolarBarEcharts) },
+  { path: 'echarts/line', loadComponent: () => import('./echarts/line/LineEcharts.component').then((m) => m.LineEcharts) },
+  { path: 'echarts/column', loadComponent: () => import('./echarts/column/ColumnEcharts.component').then((m) => m.ColumnEcharts) },
+  { path: 'echarts/group', loadComponent: () => import('./echarts/group/GroupEcharts.component').then((m) => m.GroupEcharts) },
+  { path: 'music-search', loadComponent: () => import('./musicSearch/MusicSearch.component').then((m) => m.MusicSearchComponent) },
 ];
 
 export const appConfig: ApplicationConfig = {

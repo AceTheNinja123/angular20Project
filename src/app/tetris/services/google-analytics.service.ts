@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 declare let gtag: any;
 const GOOGLE_ANALYTICS_ID = 'UA-80363801-4';
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class GoogleAnalyticsService {
   constructor() { }
 

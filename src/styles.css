@@ -1,6 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-@import url("https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700");
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
 @import 'bootstrap/dist/css/bootstrap.css';
 @import "tailwindcss";
 
@@ -1758,18 +1756,20 @@ body {
 }
 
 .custom-dnd-tooltip .mdc-tooltip__surface {
-  background-color: #2c3e50; /* Darker background */
-  color: #ecf0f1;           /* Light text */
-  font-size: 14px;
-  padding: 12px;
-  border-radius: 8px;
-  max-width: 400px;
-  padding: 10px;
+    background-color: #2c3e50;
+    /* Darker background */
+    color: #ecf0f1;
+    /* Light text */
+    font-size: 14px;
+    padding: 12px;
+    border-radius: 8px;
+    max-width: 400px;
+    padding: 10px;
 
-  /* Crucial: Respect the \n line breaks generated in your TS */
-  white-space: pre-line; 
-  
-  /* Optional: Add a border or shadow */
-  border: 1px solid #34495e;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    /* Crucial: Respect the \n line breaks generated in your TS */
+    white-space: pre-line;
+
+    /* Optional: Add a border or shadow */
+    border: 1px solid #34495e;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }

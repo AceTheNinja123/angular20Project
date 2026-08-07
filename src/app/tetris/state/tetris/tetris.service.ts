@@ -1,8 +1,4 @@
-import {
-  PieceFactory,
-  SPAWN_POSITION_X,
-  SPAWN_POSITION_Y
-} from '@app/tetris/factory/piece-factory';
+import { PieceFactory, SPAWN_POSITION_X, SPAWN_POSITION_Y } from '@app/tetris/factory/piece-factory';
 import { CallBack } from '@app/tetris/interface/callback';
 import { GameState } from '@app/tetris/interface/game-state';
 import { Piece } from '@app/tetris/interface/piece/piece';

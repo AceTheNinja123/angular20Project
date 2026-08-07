@@ -1,36 +1,36 @@
 <!--quiz.component.html-->
 
 <div class="container">
-  <form [(formGroup)]="quizForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="quizForm" (ngSubmit)="onSubmit()">
     <mat-card class="quiz-card">
       <mat-card-title>Quiz Questions</mat-card-title>
       <mat-card-content>
         @for (q of qBank; track q) {
-          <div class="question">
-            <mat-card class="question-card">
-              <mat-card-title>{{ q.question }}</mat-card-title>
-              <mat-card-content>
-                <mat-radio-group [formControlName]="q.id.toString()">
-                  @for (option of q.options; track option) {
-                    <mat-radio-button [value]="option">
-                      {{ option }}
-                    </mat-radio-button>
-                  }
-                </mat-radio-group>
-                @if (showResults) {
-                  <div class="feedback">
-                    @if (q.selected === q.answer && q.selected !== '') {
-                      <p class="correct"> Correct!</p>
-                    }
-                    @if (q.selected !== q.answer && q.selected !== '') {
-                      <p class="incorrect">
-                      Incorrect.Correct Answer: {{ q.answer }}</p>
-                    }
-                  </div>
+        <div class="question">
+          <mat-card class="question-card">
+            <mat-card-title>{{ q.question }}</mat-card-title>
+            <mat-card-content>
+              <mat-radio-group [formControlName]="q.id.toString()">
+                @for (option of q.options; track option) {
+                <mat-radio-button [value]="option">
+                  {{ option }}
+                </mat-radio-button>
                 }
-              </mat-card-content>
-            </mat-card>
-          </div>
+              </mat-radio-group>
+              @if (showResults) {
+              <div class="feedback">
+                @if (q.selected === q.answer && q.selected !== '') {
+                <p class="correct"> Correct!</p>
+                }
+                @if (q.selected !== q.answer && q.selected !== '') {
+                <p class="incorrect">
+                  Incorrect.Correct Answer: {{ q.answer }}</p>
+                }
+              </div>
+              }
+            </mat-card-content>
+          </mat-card>
+        </div>
         }
       </mat-card-content>
       <mat-card-actions>
@@ -38,12 +38,12 @@
       </mat-card-actions>
     </mat-card>
     @if(showResults){
-      <div class="score">
-        <h2>Your Score: {{ score }} / {{ qBank.length }}</h2>
-      </div>
+    <div class="score">
+      <h2>Your Score: {{ score }} / {{ qBank.length }}</h2>
+    </div>
     }
     <!-- <div *ngIf="showResults" class="score">
     <h2>Your Score: {{ score }} / {{ qBank.length }}</h2>
   </div> -->
-</form>
+  </form>
 </div>
